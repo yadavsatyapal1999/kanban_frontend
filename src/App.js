@@ -1,25 +1,19 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Todo from './UI/Todo';
+import Doing from './UI/Doing';
+import Done from './UI/Done';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <div className="App">
+
+    <h1>Hello</h1>
+    <Todo />
+    <Doing />
+    <Done />
+  </div>
+
 }
 
 export default App;
