@@ -1,17 +1,16 @@
 
 import './App.css';
-import Todo from './UI/Todo';
-import Doing from './UI/Doing';
-import Done from './UI/Done';
-
+import Login from './UI/Login';
+import Signup from './UI/Signup';
 
 function App() {
   return <div className="App">
 
+    <Signup />
+    <Login />
     <h1>Hello</h1>
-    <Todo />
-    <Doing />
-    <Done />
+
+    https://real-state-backend-6416.onrender.com
   </div>
 
 }
