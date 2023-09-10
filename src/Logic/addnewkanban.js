@@ -1,22 +1,23 @@
+
 import axios from "axios";
 
 
 
-
-export async function Addnewtask(kanban, task) {
-
+export async function addnewkanban(kanban) {
+console.log("addnew kanban function")
+console.log(kanban)
     const token = localStorage.getItem("token");
-    // console.log(token)
+    console.log(token)
     if (!token) {
         alert("token is missing");
         console.log("token not found");
     }
 
     const data = {
-        Kanban: kanban,
-        task: task
+        Kanban: kanban
+
     }
-   await axios.post('http://localhost:8000/task/new', data,
+    await axios.post('http://localhost:8000/kanban/new', data,
         {
             headers: {
                 "Content-Type": "application/json",
@@ -28,13 +29,16 @@ export async function Addnewtask(kanban, task) {
         .then(res => {
             console.log("task added sucesfully")
             alert("added sucessfully")
+            return res
         })
         .catch(err => {
             console.log(err);
             alert("Unable to save data")
+            return
         })
-     
-     console.log(data)
-    return 
-}
 
+     console.log(data)
+
+    return
+
+}

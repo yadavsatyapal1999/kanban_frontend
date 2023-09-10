@@ -2,42 +2,64 @@ import axios from "axios";
 import { useContext } from "react";
 import { myContext } from "../Context/Context";
 import { gettask } from "../Logic/gettask";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Login() {
 
     const { login, Setlogin, Setkanban, Setgettask } = useContext(myContext)
 
-
+    const navigate = useNavigate()
 
 
     return <div>
         <form method="POST" onSubmit={(e) => {
             e.preventDefault();
+            
             axios.post("http://localhost:8000/user/login", {
                 email: login.email,
                 password: login.password
 
             })
                 .then(response => {
-                    // console.log(response.data.Token)
-                    localStorage.setItem("token", response.data.Token)
-                    localStorage.setItem("owner", response.data.user)
-                    axios.get(`http://localhost:8000/kanban/get/${localStorage.getItem("owner")}`)
-                        .then(data => {
-                            Setkanban(data.data)
-                            gettask().then((array) => {
-                               // console.log("array");
-                               // console.log(array)
-                                Setgettask(array)
+
+                    if (response.status == 200) {
+
+                        alert("login Sucessful")
+
+                        localStorage.setItem("token", response.data.Token)
+                        localStorage.setItem("owner", response.data.user)
+
+                        axios.get(`http://localhost:8000/kanban/get/${localStorage.getItem("owner")}`)
+                            .then(data => {
+                                Setkanban(data.data)
+                                gettask().then((array) => {
+                                    // console.log("array");
+                                    // console.log(array)
+                                    Setgettask(array);
+                                    navigate("/dashboard")
+                                })
                             })
-                        })
-                        .catch(err => {
-                            console.log(err);
-                            alert("Unable to fetch data for the user")
-                        })
+
+
+                            .catch(err => {
+                                console.log(err);
+                                alert("Unable to fetch data for the user please try to login again")
+                            })
+                    }
                 })
                 .catch(err => {
                     console.log(err)
+                    if (err.response.status == 400) {
+                        alert("Invalid Credentials")
+                    }
+                    else if (err.response.status == 500) {
+                        alert("user not registered")
+                    }
+                    else {
+                        alert("Internal server error")
+                    }
+
                 })
 
         }} >
@@ -65,21 +87,14 @@ export default function Login() {
                     })
                 }}
             />
-            <br />
-            <button type="submit" >Login</button>
+
+            <div>
+                <button type="submit" >Login</button>
+                <br />
+                <a href="/signup" >SignUp</a>
+            </div>
+
         </form>
-        <div>
-            {/*Kanabn != null || Kanabn != undefined ? <div>
-                {Kanabn.map(data => {
-                    return <div>
-                        <div>  {data.Kanban} </div>
-                        <button onClick={() => {
-                            console.log("clicked to add task")
-                            Addnewtask(data.Kanban, "Test2 task")
-                        }} >Add new task</button>
-                    </div>
-                })}
-            </div> : <div>Not any list to show</div>*/}
-        </div>
+
     </div>
 }

@@ -2,15 +2,16 @@
 import { myContext } from "../Context/Context";
 import { useContext } from "react"
 import Input from "./Input";
+import AddKanban from "./Addkanban";
+
 
 export default function DashBoard() {
 
     const { kanban, getask, Setgettask } = useContext(myContext);
 
-    //console.log(kanban)
+
 
     return <div>
-        <h1>Kanban Page</h1>
         {kanban != null || kanban != undefined ?
             <div>
                 {kanban.map(data => {
@@ -34,6 +35,7 @@ export default function DashBoard() {
                 })}
             </div>
             :
-            <div>Kanban</div>}
+            <div></div>}
+        <AddKanban />
     </div>
 }

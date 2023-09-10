@@ -24,7 +24,7 @@ let data ;
            // console.log(res.data)
            localStorage.setItem('task',res.data)
            data = res.data
-            alert("task fetched sucessfully")
+            
         })
         .catch(err => {
             console.log(err);

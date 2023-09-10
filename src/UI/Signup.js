@@ -1,14 +1,16 @@
 import axios from "axios"
 import { useContext } from "react"
 import { myContext } from "../Context/Context"
-
+import { useNavigate } from "react-router-dom"
 
 
 export default function Signup() {
 
     const { signup, Setsignup } = useContext(myContext)
 
-   // console.log(signup)
+    const navigate = useNavigate()
+
+    // console.log(signup)
     return <div>
         <form onSubmit={async (e) => {
             e.preventDefault()
@@ -23,9 +25,20 @@ export default function Signup() {
                     // localStorage.setItem("Token",res)
                     console.log("SIGNUP")
                     console.log(response)
+                    if (Number(response.status) == 200) {
+                        alert("user registered successfully")
+                        navigate("/")
+                    }
+
                 })
                 .catch(err => {
-                    console.log(err)
+                    console.log("error")
+                    console.log(err.response.status)
+                    if (err.response.status == 400) {
+                        alert("user already exist")
+                    } else {
+                        alert("Internal server error")
+                    }
                 })
 
         }} >
@@ -51,7 +64,11 @@ export default function Signup() {
                 value={signup.password}
             />
             <br />
-            <button type="submit" value={"SignUp"}>SignUp </button>
+            <div>
+                <button type="submit" value={"SignUp"}>SignUp </button>
+                <br />
+                <a href="/">Login</a>
+            </div>
         </form>
 
     </div>

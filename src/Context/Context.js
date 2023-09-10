@@ -8,23 +8,23 @@ export const myContext = createContext("");
 
 export default function ContextProvider({ children }) {
 
-    const [login, Setlogin] = useState({
+    const [login, Setlogin] = useState({ // for login
         email: "",
         password: ""
     })
 
-    const [signup, Setsignup] = useState({
+    const [signup, Setsignup] = useState({  // for signup
         email: "",
         password: ""
     })
 
-    const [kanban, Setkanban] = useState();
+    const [kanban, Setkanban] = useState(); // to render list of kanban
 
-    const [task, Settask] = useState();
+    const [task, Settask] = useState(); // to add new task
 
-    const [getask, Setgettask] = useState()
+    const [getask, Setgettask] = useState() // to render list of task
 
-    console.log(getask)
+    //console.log(getask)
     return <myContext.Provider
 
         value={{
