@@ -16,7 +16,7 @@ export async function Addnewtask(kanban, task) {
         Kanban: kanban,
         task: task
     }
-   await axios.post('http://localhost:8000/task/new', data,
+   await axios.post('https://kanaban-system.onrender.com/task/new', data,
         {
             headers: {
                 "Content-Type": "application/json",

@@ -17,7 +17,7 @@ console.log(kanban)
         Kanban: kanban
 
     }
-    await axios.post('http://localhost:8000/kanban/new', data,
+    await axios.post('https://kanaban-system.onrender.com/kanban/new', data,
         {
             headers: {
                 "Content-Type": "application/json",

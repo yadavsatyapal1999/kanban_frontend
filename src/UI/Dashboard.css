@@ -1,0 +1,22 @@
+
+.parent{
+    flex-wrap: wrap;
+    display: inline-flex;
+}
+.kanban{
+    padding: 1vw;
+    width: 18vw;
+    border: 1vw solid darkgrey;
+    margin: 6px;
+    border-radius: 0vw 3vw
+}
+.name{
+    font-size: 3vw;
+    font-family: emoji;
+}
+.task{
+    font-size: 2vw;
+    font-family: emoji;
+    font-style: italic;
+    list-style: devanagari
+}
