@@ -12,11 +12,11 @@ export default function Login() {
     const navigate = useNavigate()
 
 
-    return <div>
-        <form method="POST" onSubmit={(e) => {
+    return <div className="login"  >
+        <form className="login_form" method="POST" onSubmit={(e) => {
             e.preventDefault();
             
-            axios.post("http://localhost:8000/user/login", {
+            axios.post("https://kanaban-system.onrender.com/user/login", {
                 email: login.email,
                 password: login.password
 
@@ -30,7 +30,7 @@ export default function Login() {
                         localStorage.setItem("token", response.data.Token)
                         localStorage.setItem("owner", response.data.user)
 
-                        axios.get(`http://localhost:8000/kanban/get/${localStorage.getItem("owner")}`)
+                        axios.get(`https://kanaban-system.onrender.com/kanban/get/${localStorage.getItem("owner")}`)
                             .then(data => {
                                 Setkanban(data.data)
                                 gettask().then((array) => {
@@ -88,8 +88,8 @@ export default function Login() {
                 }}
             />
 
-            <div>
-                <button type="submit" >Login</button>
+            <div className="btn_cover">
+                <button className="btn" type="submit" >Login</button>
                 <br />
                 <a href="/signup" >SignUp</a>
             </div>

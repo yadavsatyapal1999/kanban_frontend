@@ -1,5 +1,7 @@
 
 import './App.css';
+import '../src/UI/Ui.css';
+import "../src/UI/Dashboard.css"
 import Login from './UI/Login';
 import Signup from './UI/Signup';
 import DashBoard from './UI/DashBoard';

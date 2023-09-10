@@ -11,10 +11,10 @@ export default function Signup() {
     const navigate = useNavigate()
 
     // console.log(signup)
-    return <div>
-        <form onSubmit={async (e) => {
+    return <div className="login">
+        <form  className="login_form" onSubmit={async (e) => {
             e.preventDefault()
-            axios.post("http://localhost:8000/user/new", {
+            axios.post("https://kanaban-system.onrender.com/user/new", {
                 email: signup.email,
                 password: signup.password
 
@@ -64,8 +64,8 @@ export default function Signup() {
                 value={signup.password}
             />
             <br />
-            <div>
-                <button type="submit" value={"SignUp"}>SignUp </button>
+            <div className="btn_cover">
+                <button className="btn" type="submit" value={"SignUp"}>SignUp </button>
                 <br />
                 <a href="/">Login</a>
             </div>

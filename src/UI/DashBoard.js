@@ -3,7 +3,7 @@ import { myContext } from "../Context/Context";
 import { useContext } from "react"
 import Input from "./Input";
 import AddKanban from "./Addkanban";
-
+import "../UI/Ui.css"
 
 export default function DashBoard() {
 
@@ -11,17 +11,17 @@ export default function DashBoard() {
 
 
 
-    return <div>
+    return <div className="dashboard" >
         {kanban != null || kanban != undefined ?
-            <div>
+            <div classname="parent">
                 {kanban.map(data => {
-                    return <div>
-                        <div>
+                    return <div className="kanban" >
+                        <div className="name" >
                             {data.Kanban}
                         </div>
                         <Input data={data} />
                         {getask != null || getask != undefined
-                            ? <ol>
+                            ? <ol className="task">
                                 {getask.map(task => {
                                     if (task.Kanban == data.Kanban) {
                                         return <li>
